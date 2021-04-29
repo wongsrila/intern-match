@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/users/create" method="POST">
+        <label for="first_name">What is your first name?</label>
+        <input type="text" name="first_name" required id="first_name">
+
+        <label for="last_name">What is your last name?</label>
+        <input type="text" name="last_name" required id="last_name">
+
+        <label for="age">How old are you?</label>
+        <input type="number" name="age" required id="age">
+
+        <label for="location">Where do you live?</label>
+        <input type="text" name="Location" id="location">
+
+        <label for="user_type">How can we describe you as?</label>
+        <select name="user_type" required id="user_type">
+            <option value="#" disabled selected>Choose an option...</option>
+            <option value="intern">Intern</option>
+            <option value="business">Business</option>
+          </select>
+          <button type="submit">Create Account</button>
+    </form>
+</body>
+</html>
