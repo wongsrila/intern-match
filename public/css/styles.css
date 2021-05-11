@@ -1,20 +1,3 @@
-form {
-    display: flex;
-    flex-direction: column;
-
-    width: 35%;
-}
-
-form input {
-    margin-bottom: 20px;
-}
-
-form button {
-    margin-top: 25px;
-    background: green;
-    color: white;
-    border: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    cursor: pointer;
+body {
+  font-family: 'Montserrat', sans-serif;
 }

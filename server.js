@@ -17,7 +17,7 @@ mongoose
 
 // Middleware
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
@@ -28,7 +28,13 @@ app.post('/users/create', user_create_post);
 
 // Controllers
 function home(req, res) {
-  res.render('index');
+  res.render('index', {
+    headTitle: 'Home',
+    css: 'index.css',
+    data: {
+      quote: 'Ik zoek een stagebedrijf dat mij kan helpen met Javascript',
+    },
+  });
 }
 
 function user_index(req, res) {

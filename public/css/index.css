@@ -1,0 +1,54 @@
+/* Header styling */
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  width: 100%;
+  height: 60px;
+  padding: 0 25px;
+}
+
+header ul {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.header__heart {
+  font-size: 24px;
+  color: #fff2cb;
+}
+
+.header__settings {
+  font-size: 18px;
+  color: #383f51;
+}
+
+.header__title a {
+  color: #383f51;
+  font-size: 24px;
+}
+
+.header__title span {
+  font-weight: 700;
+}
+
+/* Quote Styling */
+.quote {
+  height: 100%;
+  margin: 25px 25px;
+  padding: 20px 20px;
+  background-color: #f6fbfd;
+  border-radius: 15px;
+}
+
+.quote__title {
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+
+/* Slider Styling */
