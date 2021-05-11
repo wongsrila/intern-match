@@ -33,6 +33,9 @@ function home(req, res) {
     css: 'index.css',
     data: {
       quote: 'Ik zoek een stagebedrijf dat mij kan helpen met Javascript',
+      imgURI: 'images/intern1.png',
+      name: 'John Doe',
+      sumary: 'Design student at Hogeschool van Amsterdam',
     },
   });
 }
