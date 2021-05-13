@@ -26,6 +26,8 @@ app.get('/users', user_index);
 app.get('/users/create', user_create_get);
 app.post('/users/create', user_create_post);
 
+app.get('/account', account_index);
+
 // Controllers
 function home(req, res) {
   res.render('index', {
@@ -59,4 +61,11 @@ function user_create_post(req, res) {
     .catch((err) => {
       console.log(err);
     });
+}
+
+function account_index(req, res) {
+  res.render('account_index', {
+    headTitle: 'Home',
+    css: 'index.css',
+  });
 }

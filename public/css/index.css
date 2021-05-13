@@ -58,7 +58,7 @@ header ul {
   justify-content: flex-end;
 
   height: 436px;
-  margin: 25px 25px;
+  margin: 0 25px;
   padding: 20px 20px;
   background-image: url(../images/intern1.png);
 
@@ -83,4 +83,50 @@ header ul {
   color: #fff;
   margin-bottom: 10px;
   text-shadow: 0px 0px 15px #000000;
+}
+
+/* Action styling */
+.action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.action__dislike img {
+  height: 60px;
+}
+
+.action__cookie img {
+  height: 70px;
+}
+
+.action__like img {
+  height: 60px;
+}
+
+/* Footer styling */
+footer {
+  position: fixed;
+  bottom: 30px;
+  left: 25px;
+  right: 25px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  height: 60px;
+  background-color: #383f51;
+  border-radius: 15px;
+  padding: 0 30px;
+}
+
+.footer__icon {
+  color: #fff;
+  font-size: 20px;
 }
