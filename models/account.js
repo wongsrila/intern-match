@@ -1,13 +1,25 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema(
+const accountSchema = new Schema(
   {
-    first_name: {
+    name: {
       type: String,
       required: true,
     },
-    last_name: {
+    study: {
+      type: String,
+      required: true,
+    },
+    message: {
+      type: String,
+      required: true,
+    },
+    profileImg: {
+      type: String,
+      required: true,
+    },
+    interests: {
       type: String,
       required: true,
     },
@@ -15,17 +27,9 @@ const userSchema = new Schema(
       type: Number,
       required: true,
     },
-    location: {
-      type: String,
-      required: false,
-    },
-    user_type: {
-      type: String,
-      required: true,
-    },
   },
   { timestamps: true }
 );
 
-const User = mongoose.model('User', userSchema);
-module.exports = User;
+const account = mongoose.model('account', accountSchema);
+module.exports = account;
