@@ -17,7 +17,7 @@ mongoose
   .then((result) => app.listen(3000))
   .catch((err) => console.log(err));
 
-// Middleware
+// Middlewares
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
@@ -30,28 +30,16 @@ app.get('/', home);
 // app.get('/account', account_index);
 app.get('/account/edit', account_edit_get);
 app.post('/account/edit', account_edit_post);
+app.post('/account/like', account_like_post);
 
+// GET Home pagina
 function home(req, res) {
   const meta = {
     headTitle: 'Intern Match | Account',
     css: 'index.css',
   };
 
-  // Account.countDocuments({}, function (err, count) {
-  //   const rand = Math.floor(Math.random() * count);
-  //   Account.find({ liked: 'on' })
-  //     .then((result) => {
-  //       // const data = result[rand];
-  //       // res.render('index', { meta });
-  //       console.log(result.length);
-  //       // res.send(info);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // });
-
-  Account.find({ liked: 'on' })
+  Account.find({ liked: 'off' })
     .then((result) => {
       const rand = Math.floor(Math.random() * result.length);
       const data = result[rand];
@@ -62,6 +50,20 @@ function home(req, res) {
     });
 }
 
+// POST liked
+function account_like_post(req, res) {
+  const id = req.body.name.trim();
+
+  Account.findOneAndUpdate({ name: id }, { liked: 'on' })
+    .then((result) => {
+      res.redirect('/');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+// GET account/edit
 function account_edit_get(req, res) {
   const meta = {
     headTitle: 'Intern Match | Account',
@@ -70,6 +72,7 @@ function account_edit_get(req, res) {
   res.render('account_edit', { meta });
 }
 
+// POST account/edit
 function account_edit_post(req, res) {
   const account = new Account(req.body);
 

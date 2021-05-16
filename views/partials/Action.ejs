@@ -5,5 +5,8 @@
   <img src="images/cookie.png" alt="Dislike" />
 </a>
 <a href="#" class="action__like">
-  <img src="images/heart.png" alt="Dislike" />
+  <form action="/account/like" method="POST">
+    <input type="hidden" name="name" value="<%= data.name %> " />
+    <button type="submit"><img src="images/heart.png" alt="Dislike" /></button>
+  </form>
 </a>
