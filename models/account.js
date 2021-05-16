@@ -23,6 +23,9 @@ const accountSchema = new Schema(
       type: Number,
       required: true,
     },
+    liked: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

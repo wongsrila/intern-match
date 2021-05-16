@@ -37,17 +37,29 @@ function home(req, res) {
     css: 'index.css',
   };
 
-  Account.countDocuments({}, function (err, count) {
-    const rand = Math.floor(Math.random() * count);
-    Account.find({})
-      .then((result) => {
-        data = result[rand];
-        res.render('index', { data, meta });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+  // Account.countDocuments({}, function (err, count) {
+  //   const rand = Math.floor(Math.random() * count);
+  //   Account.find({ liked: 'on' })
+  //     .then((result) => {
+  //       // const data = result[rand];
+  //       // res.render('index', { meta });
+  //       console.log(result.length);
+  //       // res.send(info);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // });
+
+  Account.find({ liked: 'on' })
+    .then((result) => {
+      const rand = Math.floor(Math.random() * result.length);
+      const data = result[rand];
+      res.render('index', { data, meta });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 function account_edit_get(req, res) {
