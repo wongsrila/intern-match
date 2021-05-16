@@ -1,8 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const User = require('./models/user');
-const account = require('./models/account');
+const random = require('mongoose-random');
+// const User = require('./models/user');
+const Account = require('./models/account');
 
 // Express app
 const app = express();
@@ -16,14 +17,6 @@ mongoose
   .then((result) => app.listen(3000))
   .catch((err) => console.log(err));
 
-// Data table
-const data = {
-  quote: 'Ik zoek een stagebedrijf dat mij kan helpen met Javascript',
-  imgURI: 'images/intern1.png',
-  name: 'John Doe',
-  sumary: 'Design student at Hogeschool van Amsterdam',
-};
-
 // Middleware
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
@@ -31,76 +24,47 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get('/', home);
-app.get('/users', user_index);
-app.get('/users/create', user_create_get);
-app.post('/users/create', user_create_post);
-app.get('/account', account_index);
+// app.get('/users', user_index);
+// app.get('/users/create', user_create_get);
+// app.post('/users/create', user_create_post);
+// app.get('/account', account_index);
 app.get('/account/edit', account_edit_get);
 app.post('/account/edit', account_edit_post);
 
-// Controllers
 function home(req, res) {
-  res.render('index', {
-    meta: {
-      headTitle: 'Intern Match | Home',
-      css: 'index.css',
-    },
-    data,
+  const meta = {
+    headTitle: 'Intern Match | Account',
+    css: 'index.css',
+  };
+
+  Account.countDocuments({}, function (err, count) {
+    const rand = Math.floor(Math.random() * count);
+    Account.find({})
+      .then((result) => {
+        data = result[rand];
+        res.render('index', { data, meta });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 }
 
-function account_index(req, res) {
-  User.findOne({})
-    .then((data) => {
-      res.render('account_edit', {
-        meta: {
-          headTitle: 'Intern Match | Account',
-          css: 'account.css',
-        },
-        data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
-// Find account
 function account_edit_get(req, res) {
-  User.findOne({})
-    .then((data) => {
-      res.render('account_edit', {
-        meta: {
-          headTitle: 'Intern Match | Account',
-          css: 'account.css',
-        },
-        data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  const meta = {
+    headTitle: 'Intern Match | Account',
+    css: 'account.css',
+  };
+  res.render('account_edit', { meta });
 }
 
 function account_edit_post(req, res) {
-  console.log(req.body);
-}
+  const account = new Account(req.body);
 
-function user_index(req, res) {
-  res.render('user_index');
-}
-
-function user_create_get(req, res) {
-  res.render('user_create');
-}
-
-function user_create_post(req, res) {
-  console.log(req.body);
-  const user = new User(req.body);
-  user
+  account
     .save()
     .then((result) => {
-      res.redirect('/users');
+      res.redirect('/');
     })
     .catch((err) => {
       console.log(err);

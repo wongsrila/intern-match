@@ -15,10 +15,6 @@ const accountSchema = new Schema(
       type: String,
       required: true,
     },
-    profileImg: {
-      type: String,
-      required: true,
-    },
     interests: {
       type: String,
       required: true,

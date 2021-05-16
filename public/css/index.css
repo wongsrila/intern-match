@@ -38,6 +38,10 @@
   text-shadow: 0px 0px 25px #000000;
 }
 
+.slider__textName span {
+  font-weight: 400;
+}
+
 .slider__textSumary {
   font-size: 14px;
   line-height: 20px;
