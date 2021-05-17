@@ -73,3 +73,8 @@
 .action__like img {
   height: 60px;
 }
+
+.action__btn {
+  border: none;
+  background-color: transparent;
+}

@@ -1,12 +1,19 @@
 <a href="#" class="action__dislike">
-  <img src="images/cross.png" alt="Dislike" />
+  <form action="/account/dislike" method="POST">
+    <input type="hidden" name="name" value="<%= data.name %> " />
+    <button class="action__btn" type="submit">
+      <img src="images/cross.png" alt="Dislike" />
+    </button>
+  </form>
 </a>
 <a href="#" class="action__cookie">
-  <img src="images/cookie.png" alt="Dislike" />
+  <img src="images/cookie.png" alt="info" />
 </a>
 <a href="#" class="action__like">
   <form action="/account/like" method="POST">
     <input type="hidden" name="name" value="<%= data.name %> " />
-    <button type="submit"><img src="images/heart.png" alt="Dislike" /></button>
+    <button class="action__btn" type="submit">
+      <img src="images/heart.png" alt="like" />
+    </button>
   </form>
 </a>
