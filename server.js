@@ -13,7 +13,10 @@ const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWOR
 const port = process.env.PORT || 3001;
 
 mongoose
-  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGODB_URI || dbURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then((result) => app.listen(port))
   .catch((err) => console.log(err));
 
