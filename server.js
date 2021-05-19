@@ -1,8 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const random = require('mongoose-random');
-// const User = require('./models/user');
 const Account = require('./models/account');
 
 // Express app
@@ -26,10 +24,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get('/', home);
-// app.get('/users', user_index);
-// app.get('/users/create', user_create_get);
-// app.post('/users/create', user_create_post);
-// app.get('/account', account_index);
 app.get('/account/edit', account_edit_get);
 app.post('/account/edit', account_edit_post);
 app.post('/account/like', account_like_post);
