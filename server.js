@@ -12,9 +12,11 @@ dotenv.config();
 // DB connection
 const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@internmatch.bgqjg.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
+const port = process.env.PORT || 3001;
+
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then((result) => app.listen(3000))
+  .then((result) => app.listen(port))
   .catch((err) => console.log(err));
 
 // Middlewares
