@@ -4,6 +4,7 @@
   "description": "Intern Match",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "dev": "nodemon run dev"
   },
   "repository": {
