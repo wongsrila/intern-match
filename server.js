@@ -8,6 +8,7 @@ const userRoutes = require('./src/routes/userRoute');
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
+mongoose.set('useFindAndModify', false);
 
 // DB Connection
 mongoose

@@ -4,8 +4,11 @@
     <%- include('partials/head') %>
   </head>
   <body>
-    <%- include('partials/header') %>
-    <h1>Bekijk je gelikte personen</h1>
-    <%- include('partials/footer') %>
+    <header><%- include('partials/header') %></header>
+    <% if (users.length > 0) {%> <% users.forEach(user => { %>
+    <h3><%= user.name %> <span><%= user.age %> </span></h3>
+    <p><%= user.message %></p>
+    <% }) %> <% }; %>
+    <footer><%- include('partials/footer') %></footer>
   </body>
 </html>

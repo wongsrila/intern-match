@@ -6,6 +6,7 @@ const userIndex = (req, res) => {
     .then((result) => {
       const rand = Math.floor(Math.random() * result.length);
       const data = result[rand];
+      console.log(data);
       res.render('userIndex', { data });
     })
     .catch((err) => {
@@ -55,8 +56,8 @@ const userDislikePost = (req, res) => {
 // User Likes - GET
 const userLikesGet = (req, res) => {
   User.find({ status: 'liked' })
-    .then((result) => {
-      res.render('userLikes', { result });
+    .then((users) => {
+      res.render('userLikes', { users });
     })
     .catch((err) => {
       console.log(err);
