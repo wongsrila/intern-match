@@ -19,7 +19,7 @@ mongoose
   .then(() => console.log('DB connected successful'))
   .catch((err) => console.log(err));
 
-// Middlewaret
+// Middleware
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src/views'));
 app.use(express.static(path.join(__dirname, '/public')));
@@ -28,14 +28,5 @@ app.use(express.urlencoded({ extended: true }));
 // Routes
 app.use('/', indexRoutes);
 app.use('/users', userRoutes);
-
-// app.get('/profile', (req, res) => {
-//   res.render('multer');
-// });
-
-// app.post('/profile', upload.single('avatar'), (req, res) => {
-//   console.log(req.file);
-//   res.redirect('/profile');
-// });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
