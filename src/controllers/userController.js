@@ -1,5 +1,6 @@
 const User = require('../models/user');
 
+// User Index
 const userIndex = (req, res) => {
   User.find({ status: '?' })
     .then((result) => {
@@ -12,10 +13,12 @@ const userIndex = (req, res) => {
     });
 };
 
+// User Create - GET
 const userCreateGet = (req, res) => {
   res.render('userCreate');
 };
 
+// User Create - POST
 const userCreatePost = (req, res) => {
   const user = new User(req.body);
 
@@ -27,6 +30,7 @@ const userCreatePost = (req, res) => {
     .catch((err) => console.log(err));
 };
 
+// User Like - POST
 const userLikePost = (req, res) => {
   const id = req.body.name.trim();
 
@@ -37,6 +41,7 @@ const userLikePost = (req, res) => {
     .catch((err) => console.log(err));
 };
 
+// User Dislike - POST
 const userDislikePost = (req, res) => {
   const id = req.body.name.trim();
 
@@ -47,8 +52,15 @@ const userDislikePost = (req, res) => {
     .catch((err) => console.log(err));
 };
 
+// User Likes - GET
 const userLikesGet = (req, res) => {
-  res.render('userLikes');
+  User.find({ status: 'liked' })
+    .then((result) => {
+      res.render('userLikes', { result });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 module.exports = {
