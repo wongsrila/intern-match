@@ -12,11 +12,17 @@
       <h2 class="quote__title"><%= data.message %></h2>
     </section>
 
-    <!-- avatar -->
-    <img class="avatar-image" src="/uploads/<%= data.avatar %> " alt="" />
-
     <!-- Slider -->
-    <section class="slider">
+    <section
+      class="slider"
+      style="
+        background-image: url('uploads/<%= data.avatar %>');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 15px;
+      "
+    >
       <h2 class="slider__textName">
         <%= data.name %>, <span><%= data.age %></span>
       </h2>
