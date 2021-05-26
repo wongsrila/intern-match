@@ -94,6 +94,7 @@ const userLikesGet = (req, res) => {
     });
 };
 
+// User Likes Remove - POST
 const userLikesRemovePost = (req, res) => {
   const id = req.body.name.trim();
 
