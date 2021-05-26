@@ -5,9 +5,15 @@
   </head>
   <body>
     <header><%- include('partials/header') %></header>
+    <h1 class="likes__header">Jouw Likes</h1>
     <% if (users.length > 0) {%> <% users.forEach(user => { %>
-    <h3><%= user.name %> <span><%= user.age %> </span></h3>
-    <p><%= user.message %></p>
+    <section class="likes__row">
+      <img src="/uploads/<%= user.avatar %>" />
+      <div class="likes__info">
+        <h2><%= user.name %> <span><%= user.age %> </span></h2>
+        <p><%= user.message %></p>
+      </div>
+    </section>
     <% }) %> <% }; %>
     <footer><%- include('partials/footer') %></footer>
   </body>

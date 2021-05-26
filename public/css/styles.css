@@ -62,3 +62,42 @@ footer {
   color: #fff;
   font-size: 20px;
 }
+
+/* LIKES Page */
+.likes__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  width: 100%;
+  height: 60px;
+  padding: 0 25px;
+}
+
+.likes__header {
+  font-weight: 700;
+  font-size: 18px;
+  padding: 0 25px;
+  margin-bottom: 10px;
+  color: #384051;
+}
+
+.likes__row h2 {
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #384051;
+}
+
+.likes__row span {
+  font-weight: 400;
+}
+
+.likes__row p {
+  font-size: 12px;
+}
+
+.likes__row img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
