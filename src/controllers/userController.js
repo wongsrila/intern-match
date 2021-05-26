@@ -18,7 +18,6 @@ const userIndex = (req, res) => {
     .then((result) => {
       const rand = Math.floor(Math.random() * result.length);
       const data = result[rand];
-      console.log(data);
       res.render('userIndex', { data });
     })
     .catch((err) => {
