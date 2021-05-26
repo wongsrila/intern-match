@@ -1,4 +1,16 @@
+/* eslint-disable object-shorthand */
+const multer = require('multer');
+const path = require('path');
 const User = require('../models/user');
+
+// Multer
+const storage = multer.diskStorage({
+  destination: 'public/uploads',
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage: storage }).single('avatar');
 
 // User Index
 const userIndex = (req, res) => {
@@ -21,14 +33,28 @@ const userCreateGet = (req, res) => {
 
 // User Create - POST
 const userCreatePost = (req, res) => {
-  const user = new User(req.body);
+  upload(req, res, (err) => {
+    if (err) {
+      res.send(err);
+    } else {
+      const user = new User({
+        name: req.body.name,
+        study: req.body.study,
+        message: req.body.message,
+        interests: req.body.interests,
+        age: req.body.age,
+        status: req.body.status,
+        avatar: req.file.filename,
+      });
 
-  user
-    .save()
-    .then(() => {
-      res.redirect('/users');
-    })
-    .catch((err) => console.log(err));
+      user
+        .save()
+        .then(() => {
+          res.redirect('/users');
+        })
+        .catch(() => console.log('fout'));
+    }
+  });
 };
 
 // User Like - POST
