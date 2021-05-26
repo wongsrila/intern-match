@@ -9,5 +9,6 @@ router.get('/create', userController.userCreateGet);
 router.post('/like', userController.userLikePost);
 router.post('/dislike', userController.userDislikePost);
 router.get('/likes', userController.userLikesGet);
+router.post('/remove', userController.userLikesRemovePost);
 
 module.exports = router;

@@ -16,9 +16,14 @@ const upload = multer({ storage: storage }).single('avatar');
 const userIndex = (req, res) => {
   User.find({ status: '?' })
     .then((result) => {
-      const rand = Math.floor(Math.random() * result.length);
-      const data = result[rand];
-      res.render('userIndex', { data });
+      console.log(result);
+      if (result.length > 0) {
+        const rand = Math.floor(Math.random() * result.length);
+        const data = result[rand];
+        res.render('userIndex', { data });
+      } else {
+        res.render('userIndexEmpty');
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -89,6 +94,16 @@ const userLikesGet = (req, res) => {
     });
 };
 
+const userLikesRemovePost = (req, res) => {
+  const id = req.body.name.trim();
+
+  User.findOneAndUpdate({ name: id }, { status: '?' })
+    .then(() => {
+      res.redirect('/users/likes');
+    })
+    .catch((err) => console.log(err));
+};
+
 module.exports = {
   userIndex,
   userCreateGet,
@@ -96,4 +111,5 @@ module.exports = {
   userLikePost,
   userDislikePost,
   userLikesGet,
+  userLikesRemovePost,
 };
