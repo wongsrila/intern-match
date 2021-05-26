@@ -8,5 +8,6 @@ router.post('/', userController.userCreatePost);
 router.get('/create', userController.userCreateGet);
 router.post('/like', userController.userLikePost);
 router.post('/dislike', userController.userDislikePost);
+router.get('/likes', userController.userLikesGet);
 
 module.exports = router;

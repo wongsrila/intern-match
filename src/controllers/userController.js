@@ -47,10 +47,15 @@ const userDislikePost = (req, res) => {
     .catch((err) => console.log(err));
 };
 
+const userLikesGet = (req, res) => {
+  res.render('userLikes');
+};
+
 module.exports = {
   userIndex,
   userCreateGet,
   userCreatePost,
   userLikePost,
   userDislikePost,
+  userLikesGet,
 };
