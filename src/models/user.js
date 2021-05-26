@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const accountSchema = new Schema(
+const { Schema } = mongoose;
+
+const userSchema = new Schema(
   {
     name: {
       type: String,
@@ -23,12 +24,12 @@ const accountSchema = new Schema(
       type: Number,
       required: true,
     },
-    liked: {
+    status: {
       type: String,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-const account = mongoose.model('account', accountSchema);
-module.exports = account;
+const user = mongoose.model('user', userSchema);
+module.exports = user;

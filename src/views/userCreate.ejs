@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include ('partials/Head') %>
+  <head>
+    <%- include('partials/head') %>
+  </head>
   <body>
-    <header class="header"><%- include ('partials/Header') %></header>
-    <form action="/account/edit" method="POST">
+    <%- include('partials/header') %>
+    <form action="/users" method="POST">
       <input type="text" name="name" placeholder="name" />
       <input type="text" name="study" placeholder="study" />
       <input type="text" name="message" placeholder="message" />
       <input type="text" name="interests" placeholder="interests" />
       <input type="number" name="age" placeholder="age" />
-      <input type="hidden" name="liked" value="off" />
+      <input type="hidden" name="status" value="?" />
       <button type="submit">Verzend</button>
     </form>
-    <footer class="footer"><%- include ('partials/Footer') %></footer>
+    <%- include('partials/footer') %>
   </body>
 </html>

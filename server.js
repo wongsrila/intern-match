@@ -1,86 +1,31 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const path = require('path');
 const dotenv = require('dotenv');
-const Account = require('./models/account');
+const mongoose = require('mongoose');
+const indexRoutes = require('./src/routes/indexRoute');
+const userRoutes = require('./src/routes/userRoute');
 
-// Express app
-const app = express();
 dotenv.config();
+const app = express();
+const port = process.env.PORT || 3000;
 
-// DB connection
-const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@internmatch.bgqjg.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
-
-const port = process.env.PORT || 3001;
-
+// DB Connection
 mongoose
-  .connect(process.env.MONGODB_URI || dbURI, {
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/mvc-app', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then((result) => app.listen(port))
+  .then(() => console.log('DB connected successful'))
   .catch((err) => console.log(err));
 
-// Middlewares
+// Middleware
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public'));
+app.set('views', path.join(__dirname, 'src/views'));
+app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.get('/', home);
-app.get('/account/edit', account_edit_get);
-app.post('/account/edit', account_edit_post);
-app.post('/account/like', account_like_post);
+app.use('/', indexRoutes);
+app.use('/users', userRoutes);
 
-// GET Home pagina
-function home(req, res) {
-  const meta = {
-    headTitle: 'Intern Match | Account',
-    css: 'index.css',
-  };
-
-  Account.find({ liked: 'off' })
-    .then((result) => {
-      const rand = Math.floor(Math.random() * result.length);
-      const data = result[rand];
-      res.render('index', { data, meta });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
-// POST liked
-function account_like_post(req, res) {
-  const id = req.body.name.trim();
-
-  Account.findOneAndUpdate({ name: id }, { liked: 'on' })
-    .then((result) => {
-      res.redirect('/');
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
-// GET account/edit
-function account_edit_get(req, res) {
-  const meta = {
-    headTitle: 'Intern Match | Account',
-    css: 'account.css',
-  };
-  res.render('account_edit', { meta });
-}
-
-// POST account/edit
-function account_edit_post(req, res) {
-  const account = new Account(req.body);
-
-  account
-    .save()
-    .then((result) => {
-      res.redirect('/');
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
+app.listen(port, () => console.log(`Listening on port ${port}`));
