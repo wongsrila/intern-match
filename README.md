@@ -22,6 +22,6 @@ Met Intern Match kan je als student gemakkelijk stagebedrijven vinden in jouw br
 ```.env
 
 PORT=3000
-MONGODB_URI=<`connection string`>
+MONGODB_URI=<connection string>
 
 ```
